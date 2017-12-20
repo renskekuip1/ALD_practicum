@@ -1,16 +1,31 @@
+"""
+Finds the numbers in a string
+
+Parameters
+----------
+b : list
+    Empty list for found numbers
+lastInt : bool
+    Parameter as check if the last read number was an int
+    If True, current number must be added to last
+
+Return
+------
+
+"""
 def getNumbers(a):
     b = []
-    lastInt = 0
+    lastInt = False
     for ch in a:
-        try:
-            x = int(ch)
-            if lastInt == 1:
-                b[-1] = (b[-1] * 10) + x
+        if (ch.isdigit() == True):
+            ch = int(ch)
+            if lastInt == True:
+                b[-1] = (b[-1] * 10) + ch
             else:
-                b.append(x)
-                lastInt = 1
-        except:
-            lastInt = 0
+                b.append(ch)
+                lastInt = True
+        else:
+            lastInt = False
 
     return b
 

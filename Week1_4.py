@@ -1,11 +1,31 @@
 import random
 
+"""
+
+
+Parameters
+----------
+
+Return
+------
+
+"""
 def create_list(len):
     tmp = []
     for i in range(len):
         tmp.append(random.randrange(1, 365))
     return tmp
 
+"""
+
+
+Parameters
+----------
+
+Return
+------
+
+"""
 def check_list(a):
     check = False
     length = len(a)
@@ -25,6 +45,6 @@ for i in range(100):
     if (b == True):
         checksum+=1
 
-print("Percentage: {}%".format(checksum))
+print("Percentage: {}".format(checksum))
 
 

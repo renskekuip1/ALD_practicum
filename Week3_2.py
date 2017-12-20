@@ -1,0 +1,77 @@
+class ListNode:
+    def __init__(self,data,next_node):
+        self.data = data
+        self.next = next_node
+
+
+    def __repr__(self):
+        return str(self.data)
+
+class MyCircLinkedList:
+    def __init__(self):
+        self.tail = None
+
+    def __repr__(self):
+        s = ''
+        if not self.tail:
+            return s
+        current = self.tail.next
+        if current != None:
+            s = s + str(current)
+            current = current.next
+        while current != s[0]:
+            if str(current) == s[0]:
+                return s
+            s = s + " -> " + str(current)
+            current = current.next
+        if not s: # s == '':
+            s = 'empty list'
+        return s
+
+    def addLast(self,e):
+        if not self.tail: # self.tail == None:
+            self.tail = ListNode(e,self.tail)
+            self.tail.next = self.tail
+        else:
+            t = ListNode(e, self.tail.next)
+
+            self.tail.next = t
+            self.tail = t
+
+    def delete(self,e):
+        if self.tail: # self.tail!= None:
+            if self.tail == self.tail.next:
+                self.tail = None
+            else: #LIST_SIZE > 1
+                current = self.tail
+                while current.next != None and current.next.data != e:
+                    current = current.next
+                    #not right -> shift
+
+                if current.next != None:
+                    current.next = current.next.next
+                    #but what if right? REPLACE
+
+                if current.next == self.tail.next:
+                    self.tail = current
+                    #but what if last? REPLACE LAST
+
+if __name__ == '__main__':
+    mylist =  MyCircLinkedList()
+    #print(mylist)
+    mylist.addLast(1)
+    print("Mylist:", mylist)
+    mylist.addLast(2)
+    print("Mylist:", mylist)
+    mylist.addLast(3)
+    print("Mylist:", mylist)
+    mylist.addLast(4)
+    print("Mylist:", mylist)
+    mylist.delete(2)
+    print(mylist)
+    mylist.delete(1)
+    print(mylist)
+    mylist.delete(4)
+    print(mylist)
+    mylist.delete(3)
+    print(mylist)

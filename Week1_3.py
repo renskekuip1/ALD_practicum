@@ -1,5 +1,15 @@
 a = [i for i in range(2, 1001)]
 
+"""
+
+
+Parameters
+----------
+
+Return
+------
+
+"""
 def get_prime(array):
     for a in range(2, array[-1]):
         for b in array:
@@ -9,5 +19,5 @@ def get_prime(array):
     return array
 
 print(a)
-beep = get_prime(a)
-print(beep)
+a = get_prime(a)
+print(a)
