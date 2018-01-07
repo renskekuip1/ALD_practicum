@@ -3,7 +3,6 @@ class ListNode:
         self.data = data
         self.next = next_node
 
-
     def __repr__(self):
         return str(self.data)
 
@@ -28,6 +27,9 @@ class MyCircLinkedList:
             s = 'empty list'
         return s
 
+    """
+    Adds given parameter E at the end of list as a node
+    """
     def addLast(self,e):
         if not self.tail: # self.tail == None:
             self.tail = ListNode(e,self.tail)
@@ -38,23 +40,26 @@ class MyCircLinkedList:
             self.tail.next = t
             self.tail = t
 
+    """
+    Deletes node that contains given parameter E
+    """
     def delete(self,e):
         if self.tail: # self.tail!= None:
             if self.tail == self.tail.next:
                 self.tail = None
-            else: #LIST_SIZE > 1
+            else:
                 current = self.tail
                 while current.next != None and current.next.data != e:
                     current = current.next
-                    #not right -> shift
+                    #not right data -> shift
 
                 if current.next != None:
                     current.next = current.next.next
-                    #but what if right? REPLACE
+                    #if right data -> replace
 
                 if current.next == self.tail.next:
                     self.tail = current
-                    #but what if last? REPLACE LAST
+                    #last in list -> replace tail
 
 if __name__ == '__main__':
     mylist =  MyCircLinkedList()
@@ -68,10 +73,12 @@ if __name__ == '__main__':
     mylist.addLast(4)
     print("Mylist:", mylist)
     mylist.delete(2)
-    print(mylist)
+    print("deleted 2:", mylist)
     mylist.delete(1)
-    print(mylist)
+    print("deleted 1:", mylist)
     mylist.delete(4)
-    print(mylist)
+    print("deleted 4:", mylist)
+    mylist.addLast(2)
+    print("Added 2:", mylist)
     mylist.delete(3)
-    print(mylist)
+    print("deleted 3:", mylist)
