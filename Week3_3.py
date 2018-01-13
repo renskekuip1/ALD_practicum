@@ -25,23 +25,6 @@ class BSTNode:
             s3 = self.left.__repr__(nspaces + 3)
         return s1 + s2 + s3
 
-    def showLevelOrder(self):
-        if self is None:
-            return
-
-        a = self
-        queue = myqueue()
-        queue.enqueue(a)
-        n = None
-        while len(queue) > 0:
-            n = queue.dequeue()
-            if n.left is not None:
-                queue.enqueue( n.left )
-                print(queue)
-            if n.right is not None:
-                queue.enqueue( n.right )
-                print(queue)
-
     def insert(self,e):
         parent = self
         current = None
@@ -225,6 +208,35 @@ class BST:
         else:
             return 'null-tree'
 
+    """
+    Shows the given tree in Level Order
+    
+    return:
+    LevelOrder : int
+        List with node.elements in Level Order
+    """
+    #new one -> FINISHED
+    def showLevelOrder(self, root):
+        if root is None:
+            return
+
+        levelOrder = []
+
+        queue = myqueue()
+        queue.enqueue(root)
+
+        while len(queue) > 0:
+            node = queue.dequeue()
+            #print(node.element)
+            levelOrder.append(node.element)
+
+            if node.left is not None:
+                queue.enqueue(node.left)
+
+            if node.right is not None:
+                queue.enqueue(node.right)
+        return levelOrder
+
     def search(self,e):
         if self.root and e:
             return self.root.search(e)
@@ -287,13 +299,6 @@ class BST:
                 return True
         else:
             return False
-
-    #showlevelorder
-    def showLevelOrder(self):
-        if self.root:
-            return self.root.showLevelOrder()
-        else:
-            return 'null-tree'
 
     def delete(self,e):
         if self.root and e:
@@ -386,14 +391,19 @@ if __name__ == '__main__':
         print("Not found")
     b.rinsert(17);
     print(b)
-    print('----------------')
-    print("Test for showLevelORder")
-    b.showLevelOrder()
+    #print('----------------')
+    #print("Test for showLevelORder")
+    #b.showLevelOrder()
     print('----------------')
     print("max:", b.max())
     print('----------------')
     b.delete(14)
     print(b)
+
+    print('----------------')
+    print("Test for showLevelORder")
+    print(b.showLevelOrder(b.root))
+    print('----------------')
     print('----------------')
 
     print(b.rinsert(10))
@@ -428,6 +438,8 @@ if __name__ == '__main__':
     print(b)
     print("max:", b.max())
     print('----------------')
+
+
     b.delete(3)
     print(b)
     print('----------------')
