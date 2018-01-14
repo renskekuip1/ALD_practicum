@@ -138,26 +138,10 @@ def is_connected(G):
 def isCyclicUtil(v,visited,parent):
     visited[v]= True
 
-    #Recur for all the vertices adjacent to this vertex
-    for i in G[v]:
-        # If the node is not visited then recurse on it
-        if  visited[i]==False :
-            if(self.isCyclicUtil(i,visited,v)):
-                return True
-        # If an adjacent vertex is visited and not parent of current vertex,
-        # then there is a cycle
-        elif  parent!=i:
-            return True
-
     return False
 
 #my function no_cycles(G)
 def no_cycles(G):
-    #show_tree_info(G)
-    #show_sorted_tree_info(G)
-    V = len(vertices(G))
-    visited =[False]*(V)
-
 
     return False
 print("No_cycles:", no_cycles(G))

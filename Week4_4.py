@@ -18,23 +18,27 @@ def F(n):
     a = []
     m = [1,2,5,10,20,50,100,200,500,1000,2000,5000,10000]
 
-    #triangle.append([1]*i)
+    for i in m:
+        if i < n:
+            a.append([1]*(n+1))
+    '''
     for i in range(len(m)):
         if m[i] < n:
             a.append([1]*(n+1))
-
-
+    '''
     for i in range(1, len(a)):
         for j in range(2, len(a[i])):
-            if n >= m[i]:
+            if j >= m[i]:
                 a[i][j] = a[i-1][j] + a[i][j-m[i]]
-            elif n < m[i]:
+            elif j < m[i]:
                 a[i][j] = a[i-1][j]
 
     for line in a:
         print(line)
 
+    return a[i][j]
 
 if __name__ == '__main__':
-    debug = F(7)
-    print(debug)
+    print(F(7))
+    print(F(10))
+    print(F(512))

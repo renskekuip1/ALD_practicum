@@ -4,25 +4,21 @@ MBV dictionary waarin getal + hashwaarde staan
 verjaardags-paradox
 '''
 import random
-def search(d, e):
-    for i,j in d.items():
-        if j == e:
-            print("Same")
-            print(repr(i), '-', j)
-            return True
-    return False
 
 def find_hash():
-    tmp = {}
+    hash_dict = {}
 
-    test = float("inf")
-    num = random.uniform(0, test)
-        if search(tmp, hash(num)) is False:
-            dict = {num: hash(num)}
-            tmp.update(dict)
-            num = random.uniform(0, 1)
-            print(repr(num))
-    return tmp
+    x = random.uniform(0, 1)
+    y = random.uniform(0, 1)
+    while (hash(x) % (2**32)) != (hash(y) % (2**32)):
+        dict = {x: hash(x) % (2**32), y: hash(y) % (2**32)}
+        hash_dict.update(dict)
+
+        x = random.uniform(0, 1)
+        y = random.uniform(0, 1)
+    dict = {x: hash(x) % (2**32), y: hash(y) % (2**32)}
+    return dict
 
 if __name__ == '__main__':
     print(find_hash())
+    #find_hash()
